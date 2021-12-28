@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -17,17 +16,18 @@ firebaseAuthentication();
 const useFirebase = () => {
   // Post Type
   const [postType, setPostType] = useState("");
+
   // View Type
   const [view, setView] = useState(false);
+
   // declare user state
   const [user, setUser] = useState({});
+
   // user state change state
   const [isLoading, setIsLoading] = useState(true);
+
   // error state
   const [authError, setAuthError] = useState("");
-
-  //declare admin
-  // const [admin, setAdmin] = useState("false");
 
   // declare auth
   const auth = getAuth();
