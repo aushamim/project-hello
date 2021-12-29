@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import defaultAvatar from "../Navigation/media/venti.png";
 
 const Contacts = () => {
@@ -51,17 +52,19 @@ const Contacts = () => {
               key={user._id}
               className="shadow-sm bg-white rounded-tr-lg p-2 flex items-center lg:justify-start sm:justify-center"
             >
-              <div className="rounded-full outline outline-4 outline-purple-50 bg-white w-16">
-                <img
-                  className="rounded-full"
-                  src={
-                    user.photoURL === "defaultAvatar"
-                      ? defaultAvatar
-                      : user.photoURL
-                  }
-                  alt="Avatar"
-                />
-              </div>
+              <Link to={`/user/${user._id}`}>
+                <div className="rounded-full outline outline-4 outline-purple-50 bg-white w-16">
+                  <img
+                    className="rounded-full"
+                    src={
+                      user.photoURL === "defaultAvatar"
+                        ? defaultAvatar
+                        : user.photoURL
+                    }
+                    alt="Avatar"
+                  />
+                </div>
+              </Link>
               <div className="pl-10">
                 <span className="text-l font-medium lg:block sm:hidden">
                   {user.displayName}
