@@ -7,16 +7,18 @@ import Nav2 from "../../Components/Navigation/Nav2";
 import Notifications from "../../Components/Notifications/Notifications";
 import cover from "./media/default-cover.png";
 import defaultAvatar from "../../Components/Navigation/media/venti.png";
+import useAuth from "../../Hooks/UseAuth/UseAuth";
 
 const UserProfile = () => {
+  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   let UID = useParams();
-  const [user, setUser] = useState([]);
+  const [userDetails, setUserDetails] = useState([]);
   useEffect(() => {
     fetch(`https://aqueous-springs-11487.herokuapp.com/users`)
       .then((res) => res.json())
       .then((data) => data.filter((x) => x._id === UID.id))
-      .then((newData) => setUser(newData[0]));
+      .then((newData) => setUserDetails(newData[0]));
   }, [UID]);
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -64,40 +66,45 @@ const UserProfile = () => {
               <div className="absolute rounded-full outline lg:outline-4 outline-purple-50 bg-white sm:outline-8 sm:ml-3 lg:ml-0 h-16 w-16 sm:w-20 sm:h-20 md:top-16 md:left-3 lg:w-36 lg:h-36 lg:top-28 lg:left-10 top-16 right-5">
                 <img
                   src={
-                    user.photoURL === "defaultAvatar"
+                    userDetails.photoURL === "defaultAvatar"
                       ? defaultAvatar
-                      : user.photoURL
+                      : userDetails.photoURL
                   }
                   alt="Avatar"
                   className="rounded-full lg:h-36 lg:w-36"
                 />
               </div>
-              <button
-                className="absolute sm:top-32 lg:top-52 sm:right-4 lg:right-6 right-3 rounded-full bg-purple-200 bg-opacity-70 md:bg-opacity-100 md:bg-transparent hover:bg-purple-200 p-2 transition ease-in-out duration-500"
-                title="Add Friend"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-user-plus"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="#000000"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+              {user.email === userDetails.email ? (
+                ""
+              ) : (
+                <button
+                  className="absolute sm:top-32 lg:top-52 sm:right-4 lg:right-6 right-3 rounded-full bg-purple-200 bg-opacity-70 md:bg-opacity-100 md:bg-transparent hover:bg-purple-200 p-2 transition ease-in-out duration-500"
+                  title="Add Friend"
                 >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                  <path d="M16 11h6m-3 -3v6" />
-                </svg>
-              </button>
+                  {/* Add Friend Icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-user-plus"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="#000000"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                    <path d="M16 11h6m-3 -3v6" />
+                  </svg>
+                </button>
+              )}
             </div>
             <div className="bg-white shadow-sm lg:p-12 sm:p-5 rounded-b-lg">
               <h1 className="lg:text-4xl sm:text-2xl font-medium lg:mt-10 md:mt-8 sm:mt-5 m-3 md:m-0">
-                {user.displayName}
+                {userDetails.displayName}
               </h1>
               <p className="text-gray-500 flex text-sm items-center mt-2">
                 <svg
@@ -183,16 +190,16 @@ const UserProfile = () => {
                           <img
                             className="rounded-full"
                             src={
-                              user.photoURL === "defaultAvatar"
+                              userDetails.photoURL === "defaultAvatar"
                                 ? defaultAvatar
-                                : user.photoURL
+                                : userDetails.photoURL
                             }
                             alt="Avatar"
                           />
                         </div>
                         <div className="pl-12">
                           <h1 className="text-xl font-medium">
-                            {user.displayName}
+                            {userDetails.displayName}
                           </h1>
                           <div className="flex mt-2">
                             {/* Clock Icon */}
