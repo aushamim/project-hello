@@ -233,7 +233,7 @@ const UserProfile = () => {
             )}
           </div>
         </div>
-        <div className="p-2 mt-5 h-fit">
+        <div className="p-2 mt-5 h-fit" id="notifications">
           <Notifications></Notifications>
           <br />
           <Contacts></Contacts>

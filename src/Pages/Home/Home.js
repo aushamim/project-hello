@@ -26,7 +26,7 @@ const Home = () => {
           <NewPostBox></NewPostBox>
           <Posts></Posts>
         </div>
-        <div className="p-2 mt-5 h-fit sticky top-3">
+        <div className="p-2 mt-5 h-fit sticky top-3" id="notifications">
           <Notifications></Notifications>
           <br />
           <Contacts></Contacts>

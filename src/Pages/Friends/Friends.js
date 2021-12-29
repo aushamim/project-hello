@@ -22,7 +22,7 @@ const Friends = () => {
         <div className="p-2 mt-5 col-span-2 h-fit">
           <ComingSoon></ComingSoon>
         </div>
-        <div className="p-2 mt-5 h-fit sticky top-3">
+        <div className="p-2 mt-5 h-fit sticky top-3" id="notifications">
           <Notifications></Notifications>
           <br />
           <Contacts></Contacts>
