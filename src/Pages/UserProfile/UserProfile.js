@@ -42,6 +42,25 @@ const UserProfile = () => {
       hours > 12 ? hours - 12 : hours
     }:${minutes}${ampm} ${day}/${month}/${year}`;
   };
+
+  // delete
+  const handleDelete = (id) => {
+    const url = `https://aqueous-springs-11487.herokuapp.com/posts/${id}`;
+    fetch(url, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const confirm = window.confirm("Do you Want to Delete?");
+        if (confirm) {
+          if (data.deletedCount > 0) {
+            // alert("order Deleted");
+            document.location.reload();
+          }
+        }
+      });
+  };
+
   return (
     <>
       <Header></Header>
@@ -207,7 +226,12 @@ const UserProfile = () => {
                             {user.email === userDetails.email ? (
                               <div className="flex justify-end">
                                 {/* Trash Icon */}
-                                <button className="hover:bg-red-100 p-1 rounded-full transition ease-in-out duration-500">
+                                <button
+                                  className="hover:bg-red-100 p-1 rounded-full transition ease-in-out duration-500"
+                                  onClick={() => {
+                                    handleDelete(post._id);
+                                  }}
+                                >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="icon icon-tabler icon-tabler-trash "
