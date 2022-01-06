@@ -34,7 +34,7 @@ const Login = () => {
     <div className="lg:grid grid-cols-2 gap-2 p-10 ">
       <div className="">
         <lottie-player
-          src="https://assets9.lottiefiles.com/packages/lf20_ubzysy0s.json"
+          src="https://assets6.lottiefiles.com/packages/lf20_M9p23l.json"
           background="transparent"
           speed="1"
           style={{ width: "100%", height: "100%" }}
